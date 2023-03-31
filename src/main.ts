@@ -5,11 +5,13 @@ import App from "./App.vue";
 import AuthHandler from "./components/AuthHandler.vue";
 import ImageList from "./components/ImageList.vue";
 import UploadForm from "./components/UploadForm.vue";
+import FavoritesList from "./components/FavoritesList.vue";
 
 const routes = [
-  { path: "/oauth2/callback", component: AuthHandler },
   { path: "/", component: ImageList },
   { path: "/upload", component: UploadForm },
+  { path: "/favorites", component: FavoritesList },
+  { path: "/oauth2/callback", component: AuthHandler },
 ];
 export const router = createRouter({
   history: createWebHistory(),

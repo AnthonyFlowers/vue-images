@@ -4,9 +4,11 @@ import qs from "qs";
 import { router } from "../main";
 
 const imgurTokenLabel = "imgur_token";
+const usernameLabel = "imgur_username";
 
 const initialState = {
   token: window.localStorage.getItem(imgurTokenLabel),
+  username: window.localStorage.getItem(usernameLabel),
 };
 
 interface State {

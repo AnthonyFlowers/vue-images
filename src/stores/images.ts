@@ -1,12 +1,12 @@
 import { defineStore } from "pinia";
-import api from "../api/imgur";
+import api, { ImgurData } from "../api/imgur";
 import { router } from "../main";
 import { useAuthStore } from "./auth";
 
 const initialState = { images: [] };
 
 interface State {
-  images: string[];
+  images: ImgurData[];
 }
 
 export const useImageStore = defineStore("imageStore", {
@@ -14,19 +14,21 @@ export const useImageStore = defineStore("imageStore", {
     return initialState;
   },
   getters: {
-    allImages: (state): string[] => state.images,
+    allImages: (state): ImgurData[] => state.images,
   },
   actions: {
     async fetchImages() {
       const authStore = useAuthStore();
-      const response = (await api.fetchImages(authStore.token)) as {
-        data: { data: [] };
-      };
-      this.images = response.data.data;
+      if (authStore.token) {
+        const response = await api.fetchImages(authStore.token);
+        this.images = response.data.data;
+      }
     },
-    async uploadImages(images: FileList) {
+    async uploadImages(images: FileList | null) {
       const token = useAuthStore().token;
-      await api.uploadImages(images, token);
+      if (images && token) {
+        await api.uploadImages(images, token);
+      }
       router.push("/");
     },
   },

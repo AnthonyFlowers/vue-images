@@ -6,7 +6,8 @@
     "importHelpers": true,
     "isolatedModules": true,
     "noEmit": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "strict": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]

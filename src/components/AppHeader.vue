@@ -10,6 +10,7 @@ const store = useAuthStore();
         >Log In</a
       >
       <div v-else class="horizontal">
+        <router-link to="/favorites" class="item">Favorites</router-link>
         <router-link to="/" class="item">Galleries</router-link>
         <router-link to="/upload" class="item">Upload Photo</router-link>
         <a href="#" class="item" @click="store.logout()">Logout</a>
